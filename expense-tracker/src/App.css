@@ -26,6 +26,7 @@ body{
 .expense-form input[type="date"] {
   width: 50%;
   padding: 10px;
+  margin-left: 120px;
   margin-bottom: 10px;
   border-radius: 12px;
 }
@@ -33,6 +34,7 @@ body{
 .expense-form button {
   padding: 10px 20px;
   background-color: #4caf50;
+  margin-left: 20px;
   color: white;
   border: none;
   border-radius: 16px;
@@ -40,7 +42,7 @@ body{
 }
 
 .expense-form button:hover {
-  background-color: #45a049;
+  background-color: #2d4d2f;
 }
 
 /* Styles for the expense list */
@@ -63,6 +65,7 @@ body{
 .expense-item button {
   padding: 5px 10px;
   background-color: #f44336;
+  margin-left: 20px;
   border-radius: 20px;
   justify-content: space-between;
   color: white;
@@ -71,7 +74,7 @@ body{
 }
 
 .expense-item button:hover {
-  background-color: #d32f2f;
+  background-color: #2b1414;
 }
 
 /* Styles for the summary */
@@ -92,4 +95,72 @@ body{
 
 }
 
+.expense-list h2 {
+  align-items: center;
+}
+
+
+header {
+  background-color: lightblue;
+  padding: 30px;
+  color: black;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.expense-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.expense-form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body {
+  background-color: lightgray;
+}
+
+.summary {
+  border: 1px solid #5d9bb1;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+.summary h2 {
+  margin-top: 0;
+}
+
+.summary-item {
+  margin-bottom: 10px;
+}
+
+.expense-item input::placeholder {
+  font-size: 14px;
+  font-weight: bold;
+  color: #888;
+}
+.expense-item .edit-button {
+  margin-right: 30px;
+}
+
+.expense-item .delete-button {
+  margin-left: 50px;
+}
+
+.expense-list {
+  background-color: lightgray;
+}
 /* Rest of your CSS styles */

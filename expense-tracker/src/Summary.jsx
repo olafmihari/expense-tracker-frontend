@@ -14,7 +14,7 @@ const Summary = ({ expenses }) => {
     <div className="summary">
       <h2>Summary</h2>
       <div className="summary-item">
-        <strong>Total Amount Spent:</strong> ${calculateTotalAmount()}
+        <strong>Total Amount Spent:</strong> Ksh{calculateTotalAmount()}
       </div>
     </div>
   );
