@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import ExpenseItem from './ExpenseItem';
 
 const ExpenseList = () => {
@@ -9,13 +8,11 @@ const ExpenseList = () => {
     fetchExpenses();
   }, []);
 
-  const fetchExpenses = async () => {
-    try {
-      const response = await axios.get('http://localhost:9292/expenses');
-      setExpenses(response.data);
-    } catch (error) {
-      console.error(error);
-    }
+  const fetchExpenses = () => {
+    fetch('http://localhost:9292/expenses')
+      .then(response => response.json())
+      .then(data => setExpenses(data))
+      .catch(error => console.error(error));
   };
 
   const handleDeleteExpense = (expenseId) => {
@@ -26,7 +23,7 @@ const ExpenseList = () => {
     <div className="expense-list">
       <h2>Expense List</h2>
       {expenses.map((expense) => (
-        <ExpenseItem key={expense.id} expense={expense} handleDeleteExpense={handleDeleteExpense} />
+        <ExpenseItem key={expense.id} expense={expense} expenses={expenses} handleDeleteExpense={handleDeleteExpense} />
       ))}
     </div>
   );

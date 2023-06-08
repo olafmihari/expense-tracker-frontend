@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 const ExpenseForm = ({ handleAddExpense }) => {
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const newExpense = {
@@ -15,12 +14,20 @@ const ExpenseForm = ({ handleAddExpense }) => {
       description,
     };
 
-    try {
-      const response = await axios.post('http://localhost:9292/expenses', newExpense);
-      handleAddExpense(response.data);
-    } catch (error) {
-      console.error(error);
-    }
+    fetch('http://localhost:9292/expenses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newExpense),
+    })
+      .then(response => response.json())
+      .then((data) => {
+        handleAddExpense(data)
+        window.location.reload()
+      })
+      
+      .catch(error => console.error(error));
 
     setAmount('');
     setDate('');

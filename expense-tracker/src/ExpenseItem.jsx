@@ -21,6 +21,7 @@ const ExpenseItem = ({ expense, onDelete }) => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
+        window.location.reload()
         setIsEditing(false);
       })
       .catch((error) => {
@@ -35,6 +36,7 @@ const ExpenseItem = ({ expense, onDelete }) => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
+        window.location.reload();
         onDelete(expense.id);
       })
       .catch((error) => {
@@ -57,9 +59,9 @@ const ExpenseItem = ({ expense, onDelete }) => {
         </div>
       ) : (
         <div>
-          <div>Amount: {expense.amount}</div>
-          <div>Description: {expense.description}</div>
-          <div>Date: {expense.date}</div>
+          <div className='description'>Amount: {expense.amount}</div>
+          <div className='description'>Date: {expense.date}</div>
+          <div className='description'>Description: {expense.description}</div>
           <button onClick={() => setIsEditing(true)}>Edit</button>
           <button onClick={handleDelete}>Delete</button>
         </div>
