@@ -1,0 +1,116 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+.app-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.loading {
+  font-style: italic;
+  margin-top: 20px;
+  color: #777;
+}
+
+/* Example styles for ExpenseForm component */
+.expense-form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+.expense-form label {
+  margin-bottom: 5px;
+}
+
+.expense-form input[type='text'] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+}
+
+.expense-form button {
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* Example styles for Filter component */
+.filter {
+  margin-bottom: 20px;
+}
+
+.filter select {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+/* Example styles for Summary component */
+.summary {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.summary h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.summary p {
+  margin: 5px 0;
+}
+
+/* Example styles for ExpenseList component */
+.expense-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.expense-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.expense-list-item:last-child {
+  border-bottom: none;
+}
+
+/* Example styles for ExpenseItem component */
+.expense-item-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.expense-item-amount {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Example styles for Loader component */
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  font-size: 16px;
+  font-style: italic;
+  color: #777;
+}
