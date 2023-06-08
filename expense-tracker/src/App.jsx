@@ -3,6 +3,8 @@ import axios from 'axios';
 import Header from './Header';
 import ExpenseForm from './ExpenseForm';
 import ExpenseList from './ExpenseList';
+import Summary from './Summary';
+import './App.css';
 
 
 
@@ -75,6 +77,7 @@ const App = () => {
     <div>
       <Header />
       <ExpenseForm onAddExpense={handleAddExpense} />
+       <Summary expenses={expenses} />
       <ExpenseList
         expenses={expenses}
         onUpdateExpense={handleUpdateExpense}

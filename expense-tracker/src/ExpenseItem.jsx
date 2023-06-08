@@ -1,63 +1,65 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
-const ExpenseItem = ({ expense, handleDeleteExpense, handleUpdateExpense }) => {
+const ExpenseItem = ({ expense, onDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [updatedAmount, setUpdatedAmount] = useState(expense.amount.toString());
-  const [updatedDate, setUpdatedDate] = useState(expense.date);
+  const [updatedAmount, setUpdatedAmount] = useState(expense.amount);
   const [updatedDescription, setUpdatedDescription] = useState(expense.description);
+  const [updatedDate, setUpdatedDate] = useState(expense.date);
 
-  const handleDelete = async () => {
-    try {
-      await axios.delete(`http://localhost:9292/expenses/${expense.id}`);
-      handleDeleteExpense(expense.id);
-    } catch (error) {
-      console.error(error);
-    }
+  const handleUpdate = () => {
+    fetch(`http://localhost:9292/expenses/${expense.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        amount: updatedAmount,
+        description: updatedDescription,
+        date: updatedDate,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+        setIsEditing(false);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
 
-  const handleUpdate = async () => {
-    const updatedExpense = {
-      amount: parseFloat(updatedAmount),
-      date: updatedDate,
-      description: updatedDescription,
-    };
-
-    try {
-      await axios.put(`http://localhost:9292/expenses/${expense.id}`, updatedExpense);
-      handleUpdateExpense(updatedExpense);
-      setIsEditing(false);
-    } catch (error) {
-      console.error(error);
-    }
+  const handleDelete = () => {
+    fetch(`http://localhost:9292/expenses/${expense.id}`, {
+      method: 'DELETE',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+        onDelete(expense.id);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
 
   return (
     <div className="expense-item">
       {isEditing ? (
-        <div className="expense-item-edit">
-          <input
-            type="number"
-            value={updatedAmount}
-            onChange={(e) => setUpdatedAmount(e.target.value)}
-          />
-          <input
-            type="date"
-            value={updatedDate}
-            onChange={(e) => setUpdatedDate(e.target.value)}
-          />
-          <input
-            type="text"
-            value={updatedDescription}
-            onChange={(e) => setUpdatedDescription(e.target.value)}
-          />
-          <button onClick={handleUpdate}>Update</button>
+        <div>
+          <label>Amount</label>
+          <input type="text" value={updatedAmount} onChange={(e) => setUpdatedAmount(e.target.value)} />
+          <label>Description</label>
+          <input type="text" value={updatedDescription} onChange={(e) => setUpdatedDescription(e.target.value)} />
+          <label>Date</label>
+          <input type="text" value={updatedDate} onChange={(e) => setUpdatedDate(e.target.value)} />
+          <button onClick={handleUpdate}>Save</button>
+          <button onClick={() => setIsEditing(false)}>Cancel</button>
         </div>
       ) : (
-        <div className="expense-item-details">
-          <div>{expense.amount}</div>
-          <div>{expense.date}</div>
-          <div>{expense.description}</div>
+        <div>
+          <div>Amount: {expense.amount}</div>
+          <div>Description: {expense.description}</div>
+          <div>Date: {expense.date}</div>
           <button onClick={() => setIsEditing(true)}>Edit</button>
           <button onClick={handleDelete}>Delete</button>
         </div>
